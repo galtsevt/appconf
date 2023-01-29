@@ -13,6 +13,9 @@
         "php": ">=7.4"
     },
     "autoload": {
+        "psr-4": {
+            "Galtsevt\\AppConf\\": "src"
+        },
         "files": [
             "src/app/helpers/helpers.php"
         ]
