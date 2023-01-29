@@ -1,0 +1,27 @@
+{
+    "name": "galsevt/configs",
+    "description": "description",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Galtsev Timofey",
+            "email": "galtsev.t@yandex.ru"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "files": [
+            "src/app/helpers/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Galtsevt\\AppConf\\Providers\\ConfigServiceProvider"
+            ]
+        }
+    }
+}
