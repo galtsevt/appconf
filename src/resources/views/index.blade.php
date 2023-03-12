@@ -23,11 +23,11 @@
                                 <x-form::editor name="{{ $name }}" labelName="{{ $item['name'] }}"
                                                 value="{!!  settings($name) !!}" class="{{ $item['class'] ?? null }}"
                                                 id="{{ $item['id'] ?? null }}"
-                                                placeholder="{{ $item['placeholder'] }}"/>
+                                                placeholder="{{ $item['placeholder'] ?? null }}"/>
                             @elseif(isset($item['type']) && $item['type'] == 'textarea')
                                 <x-form::textarea name="{{ $name }}" labelName="{{ $item['name'] }}"
                                                   value="{!!  settings($name) !!}"
-                                                  placeholder="{{ $item['placeholder'] }}"/>
+                                                  placeholder="{{ $item['placeholder'] ?? null }}"/>
                             @elseif(isset($item['type']) && $item['type'] == 'select')
                                 <x-form::select name="{{ $name }}" labelName="{{ $item['name'] }}"
                                                 selected="{!!  settings($name) !!}"
@@ -35,7 +35,7 @@
                             @else
                                 <x-form::input type="text" name="{{ $name }}" labelName="{{ $item['name'] }}"
                                                value="{!! settings($name) !!}"
-                                               placeholder="{{ $item['placeholder'] }}"/>
+                                               placeholder="{{ $item['placeholder'] ?? null }}"/>
                             @endif
                         @endforeach
                     </div>
