@@ -19,15 +19,19 @@
                     <div class="tab-pane fade {{ $loop->first ? 'show active':'' }}" id="{{ $key }}-tab-pane"
                          role="tabpanel" aria-labelledby="{{ $key }}-tab" tabindex="0">
                         @foreach($config['data'] as $name => $item)
-
-                            @if(isset($item['type']) && $item['type'] == 'textarea')
+                            @if(isset($item['type']) && $item['type'] == 'editor')
+                                <x-form::editor name="{{ $name }}" labelName="{{ $item['name'] }}"
+                                                value="{!!  settings($name) !!}" class="{{ $item['class'] ?? null }}"
+                                                id="{{ $item['id'] ?? null }}"
+                                                placeholder="{{ $item['placeholder'] }}"/>
+                            @elseif(isset($item['type']) && $item['type'] == 'textarea')
                                 <x-form::textarea name="{{ $name }}" labelName="{{ $item['name'] }}"
                                                   value="{!!  settings($name) !!}"
                                                   placeholder="{{ $item['placeholder'] }}"/>
                             @elseif(isset($item['type']) && $item['type'] == 'select')
                                 <x-form::select name="{{ $name }}" labelName="{{ $item['name'] }}"
-                                                  selected="{!!  settings($name) !!}"
-                                                  :data="$item['data']()"/>
+                                                selected="{!!  settings($name) !!}"
+                                                :data="$item['data']()"/>
                             @else
                                 <x-form::input type="text" name="{{ $name }}" labelName="{{ $item['name'] }}"
                                                value="{!! settings($name) !!}"
