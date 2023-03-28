@@ -18,9 +18,9 @@ class ConfigController extends Controller
     {
         $data = [
             'title' => 'Настройки сайта',
-            'data' =>  $service->getConfigBuilder(),
+            'formElementContainers' => $service->getFormElementContainers(),
         ];
-       return response()->view('adminConfig::index', $data);
+        return response()->view('appconf::index', $data);
     }
 
     /**
@@ -31,6 +31,6 @@ class ConfigController extends Controller
     public function save(Request $request, ConfigService $service): RedirectResponse
     {
         $service->save($request);
-        return redirect()->back()->with('message', 'Успешно сохранено');
+        return redirect()->back()->with('success', 'Успешно сохранено');
     }
 }

@@ -10,8 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=7.4",
-        "galtsevt/forms": "dev-master"
+        "php": ">=7.4"
     },
     "autoload": {
         "psr-4": {

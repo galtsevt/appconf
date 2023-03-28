@@ -29,7 +29,7 @@ class ConfigServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'adminConfig');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'appconf');
 
         $this->publishes([
             __DIR__.'/../config/admin_settings.php' => config_path('admin_settings.php'),
