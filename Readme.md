@@ -10,7 +10,7 @@
 ## Добавить middleware в конфиг
 /config/admin_settings.php
 
-```<?php
+```php
 return [
 'middleware' => ['web', 'auth'],
 'extends_layout' => 'admin.layouts.app',
