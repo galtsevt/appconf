@@ -34,6 +34,7 @@ class Input extends AbstractFormElement
             'cssClass' => $this->cssClass,
             'cssId' => $this->cssId,
             'type' => $this->type,
+            'group' => $this->groupName,
         ]);
     }
 }

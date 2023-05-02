@@ -31,6 +31,7 @@ class Textarea extends AbstractFormElement
             'placeholder' => $this->placeholder,
             'cssClass' => $this->cssClass,
             'cssId' => $this->cssId,
+            'group' => $this->groupName,
         ]);
     }
 }

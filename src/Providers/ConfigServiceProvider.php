@@ -34,7 +34,10 @@ class ConfigServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/admin_settings.php' => config_path('admin_settings.php'),
             __DIR__.'/../resources/views' => resource_path('views/vendor/adminConfig'),
-            __DIR__.'/../app/settings' => app_path('settings'),
         ]);
+
+        $this->publishes([
+            __DIR__.'/../app/settings' => app_path('settings'),
+        ], 'appConfSettingsPath');
     }
 }

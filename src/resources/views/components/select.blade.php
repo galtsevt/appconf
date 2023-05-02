@@ -5,7 +5,7 @@
     >
         <option value="" selected>{{ __('No select') }}</option>
         @foreach($data as $key => $value)
-            <option value="{{ $key }}" {{ $key == settings($name) ? 'selected':'' }}>{{ $value }}</option>
+            <option value="{{ $key }}" {{ $key == settings($name, $group ?? null) ? 'selected':'' }}>{{ $value }}</option>
         @endforeach
     </select>
 

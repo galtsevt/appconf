@@ -15,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware' => config('admin_settings.middleware'), 'prefix' => 'admin'], function () {
-    Route::get('/settings', [\Galtsevt\AppConf\app\Http\ConfigController::class, 'index'])->name('admin.settings');
-    Route::post('/settings', [\Galtsevt\AppConf\app\Http\ConfigController::class, 'save'])->name('admin.settings.save');
+    Route::get('/settings/{name?}', [\Galtsevt\AppConf\app\Http\ConfigController::class, 'index'])->name('admin.settings');
+    Route::post('/settings/{name?}', [\Galtsevt\AppConf\app\Http\ConfigController::class, 'save'])->name('admin.settings.save');
 });

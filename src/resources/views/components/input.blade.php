@@ -4,7 +4,7 @@
            name="{{ $name ?? '' }}"
            class="form-control @error($name) is-invalid @enderror"
            placeholder="{{ $placeholder ?? '' }}"
-           value="{{ settings($name) }}"
+           value="{{ settings($name, $group ?? null) }}"
     >
     @error($name)
     <span class="invalid-feedback" role="alert">

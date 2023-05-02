@@ -10,6 +10,19 @@ class ConfigService
 {
     protected ?array $formElementContainers = null;
 
+    protected string $path = 'settings/factory/';
+
+    protected ?string $groupName = null;
+
+    public function setGroup($name): void
+    {
+        if ($config = config('admin_settings.groups.' . $name)) {
+            $this->path = $config['path'];
+            $this->groupName = $name;
+            call_user_func($config['before']);
+        }
+    }
+
     public function save(Request $request): void
     {
         $rules = [];
@@ -41,7 +54,7 @@ class ConfigService
     public function buildFormElementContainers(): array
     {
         $files = [];
-        foreach (new DirectoryIterator(app_path('settings/factory/')) as $fileInfo) {
+        foreach (new DirectoryIterator(app_path($this->path)) as $fileInfo) {
             if ($fileInfo->isDot()) continue;
             $config = require $fileInfo->getPathname();
             $filename = $fileInfo->getBasename('.' . $fileInfo->getExtension());
@@ -50,7 +63,8 @@ class ConfigService
                     key: $filename,
                     name: $config['name'],
                     visible: $config['visible'] ?? null,
-                    elements: $config['data']
+                    elements: $config['data'],
+                    groupName: $this->groupName,
                 );
             }
         }
@@ -59,7 +73,7 @@ class ConfigService
 
     private function getOldSettings(): array
     {
-        $path = app_path('/settings/settings.json');
+        $path = app_path('/settings/' . ($this->groupName ?? 'settings') . '.json');
         if (is_file($path)) {
             $settings = json_decode(file_get_contents($path), true);
         }
@@ -68,7 +82,7 @@ class ConfigService
 
     private function saveSettingsToFile($data): void
     {
-        Cache::forget('admin_settings');
-        file_put_contents(app_path('/settings/settings.json'), json_encode($data));
+        Cache::forget('admin_settings' . $this->groupName);
+        file_put_contents(app_path('/settings/' . ($this->groupName ?? 'settings') . '.json'), json_encode($data));
     }
 }

@@ -8,6 +8,13 @@ abstract class AbstractFormElement
     protected string $name;
     protected bool $visible = true;
 
+    protected ?string $groupName = null;
+
+    public function setGroupName($group): void
+    {
+        $this->groupName = $group;
+    }
+
     public function getRules(): ?string
     {
         return $this->rules ?? 'nullable|string|max:200';

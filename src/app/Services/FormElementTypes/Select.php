@@ -30,6 +30,7 @@ class Select extends AbstractFormElement
                 'cssClass' => $this->cssClass,
                 'cssId' => $this->cssId,
                 'data' => $this->data,
+                'group' => $this->groupName,
             ]);
     }
 }
