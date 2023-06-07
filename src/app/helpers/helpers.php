@@ -34,7 +34,7 @@ function allSettingsForJS(): bool|string
                 true
             );
         }
-        Cache::put('admin_settings_all', $settings);
+        Cache::put('admin_settings_all', $settings ?? []);
     }
 
     return json_encode($settings ?? []);
