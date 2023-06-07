@@ -3,11 +3,13 @@
 namespace Galtsevt\AppConf\app\Http;
 
 use App\Http\Controllers\Controller;
+use Galtsevt\AppConf\app\Resources\FormElementContainerResource;
 use Galtsevt\AppConf\app\Services\ConfigService;
 use Galtsevt\LaravelSeo\App\Facades\Seo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Kontur\Dashboard\App\Facades\Template;
 
 class ConfigController extends Controller
 {
@@ -15,28 +17,29 @@ class ConfigController extends Controller
 
     /**
      * @param ConfigService $service
-     * @return Response
+     * @param string|null $name
+     * @return \Inertia\Response
      */
-    public function index(ConfigService $service, string $name = null): Response
+    public function index(ConfigService $service, string $name = null): \Inertia\Response
     {
         Seo::metaData()->setTitle('Настройки');
         $service->setGroup($name);
         Seo::breadcrumbs()->add('Настройки');
-        return response()->view('appconf::index', [
-            'formElementContainers' => $service->getFormElementContainers(),
-            'groupName' => $name,
+        return Template::render('Modules/Settings/Index', [
+            'formElementContainers' => FormElementContainerResource::collection($service->getFormElementContainers()),
+            'group' => $name,
         ]);
     }
 
     /**
      * @param Request $request
      * @param ConfigService $service
-     * @return RedirectResponse
+     * @return bool
      */
-    public function save(Request $request, ConfigService $service, string $name = null): RedirectResponse
+    public function save(Request $request, ConfigService $service, string $name = null): bool
     {
         $service->setGroup($name);
         $service->save($request);
-        return redirect()->back()->with('success', 'Успешно сохранено');
+        return true;
     }
 }

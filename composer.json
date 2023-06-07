@@ -1,5 +1,6 @@
 {
     "name": "galtsevt/appconf",
+    "type": "kontur-module",
     "description": "description",
     "minimum-stability": "stable",
     "license": "proprietary",
@@ -10,7 +11,8 @@
         }
     ],
     "require": {
-        "php": ">=7.4"
+        "php": ">=8.0",
+        "composer/installers": "~1.0"
     },
     "autoload": {
         "psr-4": {

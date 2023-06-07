@@ -48,6 +48,7 @@ class FormElementsContainer
                 $this->allValidationRules[$element->getName()] = $element->getRules();
             }
         }
+
         return $this->allValidationRules;
     }
 

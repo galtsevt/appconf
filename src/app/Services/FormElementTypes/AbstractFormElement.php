@@ -10,6 +10,8 @@ abstract class AbstractFormElement
 
     protected ?string $groupName = null;
 
+    protected array $config = [];
+
     public function setGroupName($group): void
     {
         $this->groupName = $group;
@@ -25,6 +27,16 @@ abstract class AbstractFormElement
         return $this->name;
     }
 
+    public function getValue(): ?string
+    {
+        return settings($this->name, $this->groupName ?? null);
+    }
+
+    public function getConfig(): array
+    {
+        return $this->config;
+    }
+
     public function beforeSave($value): string
     {
         return $value;
@@ -35,11 +47,4 @@ abstract class AbstractFormElement
         return $this->visible;
     }
 
-    public function render(): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application|null
-    {
-        if ($this->isVisible()) {
-            return $this->preRender();
-        }
-        return null;
-    }
 }

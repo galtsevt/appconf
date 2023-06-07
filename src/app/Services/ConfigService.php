@@ -3,6 +3,7 @@
 namespace Galtsevt\AppConf\app\Services;
 
 use DirectoryIterator;
+use Galtsevt\LaravelSeo\App\Facades\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -19,7 +20,7 @@ class ConfigService
         if ($config = config('admin_settings.groups.' . $name)) {
             $this->path = $config['path'];
             $this->groupName = $name;
-            call_user_func($config['before']);
+            Seo::metaData()->setTitle('Настройки ' . $config['name']);
         }
     }
 
@@ -66,6 +67,7 @@ class ConfigService
                     elements: $config['data'],
                     groupName: $this->groupName,
                 );
+                if (!$this->formElementContainers[$filename]->isVisible()) unset($this->formElementContainers[$filename]);
             }
         }
         return $this->formElementContainers;

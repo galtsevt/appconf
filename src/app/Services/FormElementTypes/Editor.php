@@ -4,7 +4,7 @@ namespace Galtsevt\AppConf\app\Services\FormElementTypes;
 
 use Illuminate\Support\Facades\View;
 
-class Textarea extends AbstractFormElement
+class Editor extends AbstractFormElement
 {
     protected string $name;
 
@@ -14,7 +14,7 @@ class Textarea extends AbstractFormElement
         $this->rules = $params['rules'] ?? null;
         $this->visible = isset($params['visible']) && is_callable($params['visible']) ? call_user_func($params['visible']) : true;
 
-        $this->config['element'] = 'textarea';
+        $this->config['element'] = 'editor';
         $this->config['labelName'] = $params['name'];
         $this->config['placeholder'] = $params['placeholder'] ?? null;
     }
